@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="400" Width="300">
     <Grid>
-        
+        <Button x:Name="btnAction" Click="btnAction_Click" Content="START" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="time_TextBox" HorizontalAlignment="Center" Height="23" Margin="0,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="172"/>
+
     </Grid>
 </Window>

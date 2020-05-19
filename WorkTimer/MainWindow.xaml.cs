@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WorkTimer
 {
@@ -20,9 +21,18 @@ namespace WorkTimer
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Start();
+
+        }
+
+        private void btnAction_Click(object sender, RoutedEventArgs e)
+        {
+            //time_TextBox.Text = dispatcherTimer;
         }
     }
 }
