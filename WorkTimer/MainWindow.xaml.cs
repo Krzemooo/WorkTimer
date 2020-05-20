@@ -25,14 +25,14 @@ namespace WorkTimer
         public MainWindow()
         {
             InitializeComponent();
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Start();
-
+            var temp = Core.FileFolderCore.GetDayWorkTimes(DateTime.Now);
+            //;
         }
 
         private void btnAction_Click(object sender, RoutedEventArgs e)
         {
-            //time_TextBox.Text = dispatcherTimer;
+            Core.DataCore dataCore = new Core.DataCore();
+            dataCore.AppendNewLine(DateTime.Now, (int)Model.TimeCheckpoinStatus.Break);
         }
     }
 }
