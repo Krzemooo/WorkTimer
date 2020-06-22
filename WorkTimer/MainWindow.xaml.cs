@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WorkTimer.Model;
 
 namespace WorkTimer
 {
@@ -21,18 +22,20 @@ namespace WorkTimer
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserModel _userModel = new UserModel();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        public MainWindow()
+        public MainWindow(UserModel userModel)
         {
             InitializeComponent();
-            var temp = Core.FileFolderCore.GetDayWorkTimes(DateTime.Now);
+            _userModel = userModel;
+            var temp = Core.FileFolderCore.GetDayWorkTimes(DateTime.Now, _userModel);
             //;
         }
 
         private void btnAction_Click(object sender, RoutedEventArgs e)
         {
             Core.DataCore dataCore = new Core.DataCore();
-            dataCore.AppendNewLine(DateTime.Now, (int)Model.TimeCheckpoinStatus.Break);
+            dataCore.AppendNewLine(DateTime.Now, (int)Model.TimeCheckpoinStatus.Break, _userModel);
         }
     }
 }

@@ -4,15 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkTimer.Model;
 
 namespace WorkTimer.Core
 {
     public class DataCore
     {
-        public bool GenerateNewFile(DateTime date)
+        public bool GenerateNewFile(DateTime date, UserModel userModel)
         {
             string fileContent = $"{date.ToString()},1;{Environment.NewLine}";
-            string filePath = FileFolderCore.ReturnFilePath(date);
+            string filePath = FileFolderCore.ReturnFilePath(date, userModel);
 
 
             try
@@ -37,11 +38,11 @@ namespace WorkTimer.Core
                 return false;
             }
         }
-        public bool AppendNewLine(DateTime date, int statusId)
+        public bool AppendNewLine(DateTime date, int statusId, UserModel userModel)
         {
             try
             {
-                File.AppendAllText(FileFolderCore.ReturnFilePath(date), $"{date},{statusId};{Environment.NewLine}");
+                File.AppendAllText(FileFolderCore.ReturnFilePath(date, userModel), $"{date},{statusId};{Environment.NewLine}");
                 return true;
 
             }

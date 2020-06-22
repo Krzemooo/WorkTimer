@@ -10,9 +10,9 @@ namespace WorkTimer.Core
 {
     public static class FileFolderCore
     {
-        public static string ReturnFilePath(DateTime date)
+        public static string ReturnFilePath(DateTime date, UserModel userModel)
         {
-            return Path.Combine(FileFolderCore.ReturnFileFolder(), date.ToShortDateString().Replace('.', '_'));
+            return Path.Combine(FileFolderCore.ReturnFileFolder(), date.ToShortDateString().Replace('.', '_') + '_' + userModel.Name + '_' + userModel.Surname);
         }
         private static string ReturnFileFolder()
         {
@@ -26,16 +26,16 @@ namespace WorkTimer.Core
             return specificFolder;
         }
 
-        public static List<TimeCheckpointModel> GetDayWorkTimes(DateTime date)
+        public static List<TimeCheckpointModel> GetDayWorkTimes(DateTime date, UserModel userModel)
         {
             try
             {
                 DataCore dataCore = new DataCore();
                 string[] WorkTimes = Directory.GetFiles(ReturnFileFolder());
-                if (WorkTimes.Contains(ReturnFilePath(date)))
+                if (WorkTimes.Contains(ReturnFilePath(date, userModel)))
                 {
                     List<TimeCheckpointModel> timeCheckPoints = new List<TimeCheckpointModel>();
-                    string[] textLine = File.ReadAllLines(ReturnFilePath(date));
+                    string[] textLine = File.ReadAllLines(ReturnFilePath(date, userModel));
                     foreach (string line in textLine)
                     {
                         string[] lineElemtns = line.Remove(line.Length - 1).Split(',');
@@ -49,10 +49,10 @@ namespace WorkTimer.Core
                 }
                 else
                 {
-                    if (dataCore.GenerateNewFile(date))
+                    if (dataCore.GenerateNewFile(date, userModel))
                     {
                         List<TimeCheckpointModel> timeCheckPoints = new List<TimeCheckpointModel>();
-                        string[] textLine = File.ReadAllLines(ReturnFilePath(date));
+                        string[] textLine = File.ReadAllLines(ReturnFilePath(date, userModel));
                         foreach (string line in textLine)
                         {
                             string[] lineElemtns = line.Split(',');
