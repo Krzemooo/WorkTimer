@@ -42,9 +42,22 @@ namespace WorkTimer.Core
         {
             try
             {
-                File.AppendAllText(FileFolderCore.ReturnFilePath(date, userModel), $"{date},{statusId};{Environment.NewLine}");
-                return true;
-
+                if (FileFolderCore.FileExist(date, userModel))
+                {
+                    File.AppendAllText(FileFolderCore.ReturnFilePath(date, userModel), $"{date},{statusId};{Environment.NewLine}");
+                    return true;
+                }
+                else
+                {
+                    if (statusId == (int)TimeCheckpoinStatus.Start)
+                    {
+                        if (GenerateNewFile(date, userModel))
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+                return false;
             }
             catch (Exception er)
             {

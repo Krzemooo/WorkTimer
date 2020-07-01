@@ -23,6 +23,11 @@ namespace WorkTimer
         public UserData()
         {
             InitializeComponent();
+
+#if DEBUG
+            textBoxName.Text = "Dominik";
+            textBoxSurname.Text = "Krzemiński";
+#endif
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -40,7 +45,6 @@ namespace WorkTimer
             {
                 UserModel userModel = new UserModel() { Name = textBoxName.Text, Surname = textBoxSurname.Text };
                 MainWindow mainWindow = new MainWindow(userModel);
-                App.Current.MainWindow = mainWindow;
                 this.Close();
                 mainWindow.Show();
             }

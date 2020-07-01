@@ -49,23 +49,7 @@ namespace WorkTimer.Core
                 }
                 else
                 {
-                    if (dataCore.GenerateNewFile(date, userModel))
-                    {
-                        List<TimeCheckpointModel> timeCheckPoints = new List<TimeCheckpointModel>();
-                        string[] textLine = File.ReadAllLines(ReturnFilePath(date, userModel));
-                        foreach (string line in textLine)
-                        {
-                            string[] lineElemtns = line.Split(',');
-                            timeCheckPoints.Add(new TimeCheckpointModel()
-                            {
-                                date = DateTime.Parse(lineElemtns[0]),
-                                status = (TimeCheckpoinStatus)int.Parse(lineElemtns[1])
-                            });
-                        }
-                        return timeCheckPoints;
-                    }
-                    else
-                        return new List<TimeCheckpointModel>();
+                    return null;
                 }
             }
             catch (Exception er)
@@ -73,6 +57,15 @@ namespace WorkTimer.Core
                 Console.WriteLine(er.ToString());
                 return new List<TimeCheckpointModel>();
             }
+        }
+
+        public static bool FileExist(DateTime date, UserModel userModel)
+        {
+            string[] WorkTimes = Directory.GetFiles(ReturnFileFolder());
+            if (WorkTimes.Contains(ReturnFilePath(date, userModel)))
+                return true;
+            else
+                return false;
         }
     }
 }

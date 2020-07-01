@@ -5,10 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="300">
+        Title="MainWindow" 
+        Height="76.459" 
+        Width="398.994" 
+        ResizeMode="NoResize" 
+        ShowInTaskbar="true" 
+        WindowStartupLocation="Manual"
+        WindowStyle="None"
+        Topmost="true"
+        Closing="Window_Closing">
     <Grid>
-        <Button x:Name="btnAction" Click="btnAction_Click" Content="START" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="time_TextBox" HorizontalAlignment="Center" Height="23" Margin="0,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="172"/>
-
+        <Button x:Name="btnStart" Click="btnStart_Click" Content="START" HorizontalAlignment="Right" Margin="0,10,142,10" Width="57"/>
+        <TextBox x:Name="time_TextBox" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="TIME" Width="172" IsEnabled="False" Height="23" VerticalAlignment="Bottom"/>
+        <Label x:Name="workStatus_Label" Content="Status" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="172"/>
+        <Button x:Name="btnBreak" Click="btnBreak_Click" Content="STOP" HorizontalAlignment="Right" Margin="0,10,74,10" Width="57" IsEnabled="False"/>
+        <Button x:Name="btnMinimize" Click="btnMinimize_Click" Content="Ukryj" HorizontalAlignment="Right" Margin="0,10,10,40" Width="57"/>
+        <Button x:Name="btnSetting" Click="btnSetting_Click" Content="Ustawinia" HorizontalAlignment="Right" Margin="0,40,10,10" Width="57"/>
     </Grid>
 </Window>
