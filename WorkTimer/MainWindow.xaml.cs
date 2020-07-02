@@ -25,7 +25,7 @@ namespace WorkTimer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public UserModel _userModel = new UserModel();
+        UserModel _userModel = new UserModel();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         Stopwatch stopWatch = new Stopwatch();
         string currentTime = string.Empty;
@@ -155,7 +155,7 @@ namespace WorkTimer
 
         private void ShowSetting()
         {
-            Settings settings = new Settings();
+            Settings settings = new Settings(_userModel);
             settings.Show();
         }
 

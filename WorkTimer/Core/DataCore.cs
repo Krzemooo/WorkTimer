@@ -12,7 +12,7 @@ namespace WorkTimer.Core
     {
         public bool GenerateNewFile(DateTime date, UserModel userModel)
         {
-            string fileContent = $"{date.ToString()},1;{Environment.NewLine}";
+            string fileContent = $"{date.ToString()},1;";
             string filePath = FileFolderCore.ReturnFilePath(date, userModel);
 
 
@@ -26,7 +26,7 @@ namespace WorkTimer.Core
                 {
                     using (FileStream fs = File.Create(filePath))
                     {
-                        byte[] title = new UTF8Encoding(true).GetBytes(fileContent);
+                        byte[] title = new UTF8Encoding(true).GetBytes(Cryptography.Encrypt(fileContent));
                         fs.Write(title, 0, title.Length);
                     }
                     return true;
@@ -44,7 +44,11 @@ namespace WorkTimer.Core
             {
                 if (FileFolderCore.FileExist(date, userModel))
                 {
-                    File.AppendAllText(FileFolderCore.ReturnFilePath(date, userModel), $"{date},{statusId};{Environment.NewLine}");
+                    string newElement = $"{date},{statusId};";
+                    string allText = File.ReadAllText(FileFolderCore.ReturnFilePath(date, userModel));
+                    string formatedText = Cryptography.Decrypt(allText);
+                    formatedText += newElement;
+                    File.WriteAllText(FileFolderCore.ReturnFilePath(date, userModel), formatedText);
                     return true;
                 }
                 else
@@ -64,6 +68,12 @@ namespace WorkTimer.Core
                 Console.WriteLine(er.ToString());
                 return false;
             }
+        }
+
+        public List<Model.UserWorkTime> GetUserWorkTime(UserModel userModel)
+        {
+            var temp = FileFolderCore.GetDayWorkTimes(userModel);
+            return new List<UserWorkTime>();
         }
     }
 }

@@ -26,31 +26,43 @@ namespace WorkTimer.Core
             return specificFolder;
         }
 
-        public static List<TimeCheckpointModel> GetDayWorkTimes(DateTime date, UserModel userModel)
+        public static List<TimeCheckpointModel> GetDayWorkTimes(UserModel userModel)
         {
             try
             {
                 DataCore dataCore = new DataCore();
-                string[] WorkTimes = Directory.GetFiles(ReturnFileFolder());
-                if (WorkTimes.Contains(ReturnFilePath(date, userModel)))
+                string[] workTimesFiles = Directory.GetFiles(ReturnFileFolder());
+                foreach (string file in workTimesFiles)
                 {
-                    List<TimeCheckpointModel> timeCheckPoints = new List<TimeCheckpointModel>();
-                    string[] textLine = File.ReadAllLines(ReturnFilePath(date, userModel));
-                    foreach (string line in textLine)
+                    if (file.EndsWith($"{userModel.Name}_{userModel.Surname}"))
                     {
-                        string[] lineElemtns = line.Remove(line.Length - 1).Split(',');
-                        timeCheckPoints.Add(new TimeCheckpointModel()
+                        string textHashed = File.ReadAllText(file);
+                        string[] textLine = Cryptography.Decrypt(textHashed).Split(';');
+                        foreach (string line in textLine)
                         {
-                            date = DateTime.Parse(lineElemtns[0]),
-                            status = (TimeCheckpoinStatus)int.Parse(lineElemtns[1])
-                        });
+                            string[] timeElements = line.Remove(line.Length - 1).Split(',');
+
+                        }
                     }
-                    return timeCheckPoints;
                 }
-                else
-                {
-                    return null;
-                }
+                List<TimeCheckpointModel> timeCheckPoints = new List<TimeCheckpointModel>();
+                //string[] textLine = File.ReadAllLines(ReturnFilePath(date, userModel));
+                //    foreach (string line in textLine)
+                //    {
+                //        string[] lineElemtns = line.Remove(line.Length - 1).Split(',');
+                //        timeCheckPoints.Add(new TimeCheckpointModel()
+                //        {
+                //            date = DateTime.Parse(lineElemtns[0]),
+                //            status = (TimeCheckpoinStatus)int.Parse(lineElemtns[1])
+                //        });
+                //    }
+                //    return timeCheckPoints;
+                //}
+                //    else
+                //{
+                //    return null;
+                //}
+                return null;
             }
             catch (Exception er)
             {

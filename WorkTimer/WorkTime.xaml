@@ -1,12 +1,13 @@
-﻿<Window x:Class="WorkTimer.Settings"
+﻿<Window x:Class="WorkTimer.WorkTime"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTimer"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="220.504">
+        Title="WorkTime" Height="378" Width="573.6">
     <Grid>
-        <Button x:Name="btnStats" Click="btnStats_Click" Content="Statystyki użytkownika" Margin="10,25,10,0" Height="19" VerticalAlignment="Top"/>
+        <DataGrid Margin="0,0,0,50"/>
+
     </Grid>
 </Window>

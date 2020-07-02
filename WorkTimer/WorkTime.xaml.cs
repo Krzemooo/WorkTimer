@@ -16,21 +16,22 @@ using WorkTimer.Model;
 namespace WorkTimer
 {
     /// <summary>
-    /// Interaction logic for Settings.xaml
+    /// Interaction logic for WorkTime.xaml
     /// </summary>
-    public partial class Settings : Window
+    public partial class WorkTime : Window
     {
-        UserModel _userModel;
-        public Settings(UserModel userModel)
+        private UserModel _userData;
+        public WorkTime(UserModel userData)
         {
-            _userModel = userModel;
+            _userData = userData;
             InitializeComponent();
+            this.Loaded += WorkTime_Loaded;
         }
 
-        private void btnStats_Click(object sender, RoutedEventArgs e)
+        private void WorkTime_Loaded(object sender, RoutedEventArgs e)
         {
-            WorkTime workTime = new WorkTime(_userModel);
-            workTime.Show();
+            Core.DataCore dataCore = new Core.DataCore();
+            var temp = dataCore.GetUserWorkTime(_userData);
         }
     }
 }
