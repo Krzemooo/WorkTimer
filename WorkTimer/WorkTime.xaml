@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WorkTime" Height="378" Width="573.6">
     <Grid>
-        <DataGrid Margin="0,0,0,50"/>
+        <DataGrid x:Name="DataGrid_Times" Margin="0,0,0,50"/>
 
     </Grid>
 </Window>

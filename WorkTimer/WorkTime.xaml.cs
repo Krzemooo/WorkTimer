@@ -31,7 +31,9 @@ namespace WorkTimer
         private void WorkTime_Loaded(object sender, RoutedEventArgs e)
         {
             Core.DataCore dataCore = new Core.DataCore();
-            var temp = dataCore.GetUserWorkTime(_userData);
+            var usersWorkedTime = dataCore.GetUserWorkTime(_userData);
+
+            DataGrid_Times.ItemsSource = usersWorkedTime;
         }
     }
 }

@@ -9,6 +9,6 @@ namespace WorkTimer.Model
     public class UserWorkTime
     {
         public DateTime DayStamp { get; set; }
-        public DateTime DataWork { get; set; }
+        public TimeSpan DataWork { get; set; }
     }
 }

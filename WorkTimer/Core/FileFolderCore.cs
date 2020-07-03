@@ -31,43 +31,33 @@ namespace WorkTimer.Core
             try
             {
                 DataCore dataCore = new DataCore();
+                List<TimeCheckpointModel> timeCheckPoints = new List<TimeCheckpointModel>();
                 string[] workTimesFiles = Directory.GetFiles(ReturnFileFolder());
                 foreach (string file in workTimesFiles)
                 {
                     if (file.EndsWith($"{userModel.Name}_{userModel.Surname}"))
                     {
                         string textHashed = File.ReadAllText(file);
-                        string[] textLine = Cryptography.Decrypt(textHashed).Split(';');
+                        string decryptedText = Cryptography.Decrypt(textHashed);
+                        string[] textLine = decryptedText.Remove(decryptedText.Length - 1).Split(';');
                         foreach (string line in textLine)
                         {
-                            string[] timeElements = line.Remove(line.Length - 1).Split(',');
+                            string[] timeElements = line.Split(',');
+                            timeCheckPoints.Add(new TimeCheckpointModel()
+                            {
+                                date = DateTime.Parse(timeElements[0]),
+                                status = (TimeCheckpoinStatus)int.Parse(timeElements[1])
+                            });
 
                         }
                     }
                 }
-                List<TimeCheckpointModel> timeCheckPoints = new List<TimeCheckpointModel>();
-                //string[] textLine = File.ReadAllLines(ReturnFilePath(date, userModel));
-                //    foreach (string line in textLine)
-                //    {
-                //        string[] lineElemtns = line.Remove(line.Length - 1).Split(',');
-                //        timeCheckPoints.Add(new TimeCheckpointModel()
-                //        {
-                //            date = DateTime.Parse(lineElemtns[0]),
-                //            status = (TimeCheckpoinStatus)int.Parse(lineElemtns[1])
-                //        });
-                //    }
-                //    return timeCheckPoints;
-                //}
-                //    else
-                //{
-                //    return null;
-                //}
-                return null;
+                return timeCheckPoints;
             }
             catch (Exception er)
             {
                 Console.WriteLine(er.ToString());
-                return new List<TimeCheckpointModel>();
+                return null;
             }
         }
 
