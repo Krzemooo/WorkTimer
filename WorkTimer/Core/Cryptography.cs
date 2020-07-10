@@ -14,7 +14,11 @@ namespace WorkTimer.Core
         private const int Keysize = 256;
         private const string passPhrase = "34WETRt!#@Q%#wgetr76@553";
                 private const int DerivationIterations = 1000;
-
+        /// <summary>
+        /// Metoda przyjmująca tekst w formie string, a zwracająca ciąg znaków po zaszyfrowaniu.
+        /// </summary>
+        /// <param name="plainText">Tekst wejściowy</param>
+        /// <returns></returns>
         public static string Encrypt(string plainText)
         {
             var saltStringBytes = Generate256BitsOfRandomEntropy();
@@ -48,7 +52,11 @@ namespace WorkTimer.Core
                 }
             }
         }
-
+        /// <summary>
+        /// Metoda rozszyfrowująca ciąg znakó, zwracając teskt w formie string.
+        /// </summary>
+        /// <param name="cipherText">Wejściowy ciąg znaków</param>
+        /// <returns></returns>
         public static string Decrypt(string cipherText)
         {
             var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText);

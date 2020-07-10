@@ -10,6 +10,12 @@ namespace WorkTimer.Core
 {
     public class DataCore
     {
+        /// <summary>
+        /// Metoda tworząca nowy plik w folderze, oraz dodaje pierwszy event startowy
+        /// </summary>
+        /// <param name="date">Data eventu</param>
+        /// <param name="userModel">Dane użytkownika</param>
+        /// <returns></returns>
         public bool GenerateNewFile(DateTime date, UserModel userModel)
         {
             string fileContent = $"{date.ToString()},1;";
@@ -38,6 +44,13 @@ namespace WorkTimer.Core
                 return false;
             }
         }
+        /// <summary>
+        /// Dodaje nową linie do istniejącego już pliku.
+        /// </summary>
+        /// <param name="date">Data eventu</param>
+        /// <param name="statusId">Status eventu</param>
+        /// <param name="userModel">Dane użytkownika</param>
+        /// <returns></returns>
         public bool AppendNewLine(DateTime date, int statusId, UserModel userModel)
         {
             try

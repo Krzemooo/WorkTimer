@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WorkTimer.Model
 {
+    /// <summary>
+    /// Model danych czasu przepracowanego wg dnia.
+    /// </summary>
     public class UserWorkTime
     {
         public DateTime DayStamp { get; set; }

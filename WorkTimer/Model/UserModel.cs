@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WorkTimer.Model
 {
+    /// <summary>
+    /// Model danych użytkownika (imię, nazwisko)
+    /// </summary>
     public class UserModel
     {
         public string Name { get; set; }
