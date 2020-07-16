@@ -15,7 +15,7 @@ namespace WorkTimer.Core
         /// </summary>
         /// <param name="date">Data akcji</param>
         /// <param name="userModel">Dane użytkownika</param>
-        /// <returns></returns>
+        /// <returns>String ze ścieżką do pliku</returns>
         public static string ReturnFilePath(DateTime date, UserModel userModel)
         {
             return Path.Combine(FileFolderCore.ReturnFileFolder(), date.ToShortDateString().Replace('.', '_') + '_' + userModel.Name + '_' + userModel.Surname);
@@ -35,7 +35,7 @@ namespace WorkTimer.Core
         /// Metoda zwracająca listę wszstkich eventów, jakie miały miejsce w historii, dla danego użytkownika.
         /// </summary>
         /// <param name="userModel">Dane użytkownika</param>
-        /// <returns></returns>
+        /// <returns>Listę eventów</returns>
         public static List<TimeCheckpointModel> GetDayWorkTimes(UserModel userModel)
         {
             try
@@ -75,7 +75,7 @@ namespace WorkTimer.Core
         /// </summary>
         /// <param name="date">Data akcji</param>
         /// <param name="userModel">Dane użytkownika</param>
-        /// <returns></returns>
+        /// <returns>True/False w zależności od powodzenia metody</returns>
         public static bool FileExist(DateTime date, UserModel userModel)
         {
             string[] WorkTimes = Directory.GetFiles(ReturnFileFolder());

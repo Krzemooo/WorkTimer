@@ -18,7 +18,7 @@ namespace WorkTimer.Core
         /// Metoda przyjmująca tekst w formie string, a zwracająca ciąg znaków po zaszyfrowaniu.
         /// </summary>
         /// <param name="plainText">Tekst wejściowy</param>
-        /// <returns></returns>
+        /// <returns>Zaszyfrowana treść</returns>
         public static string Encrypt(string plainText)
         {
             var saltStringBytes = Generate256BitsOfRandomEntropy();
@@ -56,7 +56,7 @@ namespace WorkTimer.Core
         /// Metoda rozszyfrowująca ciąg znakó, zwracając teskt w formie string.
         /// </summary>
         /// <param name="cipherText">Wejściowy ciąg znaków</param>
-        /// <returns></returns>
+        /// <returns>Odszyfrowana treść</returns>
         public static string Decrypt(string cipherText)
         {
             var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText);

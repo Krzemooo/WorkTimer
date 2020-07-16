@@ -15,7 +15,7 @@ namespace WorkTimer.Core
         /// </summary>
         /// <param name="date">Data eventu</param>
         /// <param name="userModel">Dane użytkownika</param>
-        /// <returns></returns>
+        /// <returns>True/False w zależności od powodzenia metody</returns>
         public bool GenerateNewFile(DateTime date, UserModel userModel)
         {
             string fileContent = $"{date.ToString()},1;";
@@ -50,7 +50,7 @@ namespace WorkTimer.Core
         /// <param name="date">Data eventu</param>
         /// <param name="statusId">Status eventu</param>
         /// <param name="userModel">Dane użytkownika</param>
-        /// <returns></returns>
+        /// <returns>True/False w zależności od powodzenia metody</returns>
         public bool AppendNewLine(DateTime date, int statusId, UserModel userModel)
         {
             try
@@ -86,7 +86,7 @@ namespace WorkTimer.Core
         /// Zwraca listę wszystkich dostępnych akcji czasów użytkownika.
         /// </summary>
         /// <param name="userModel">Dane uzytkownika (imię, nazwisko)</param>
-        /// <returns></returns>
+        /// <returns>Listę akcji.</returns>
         public List<Model.UserWorkTime> GetUserWorkTime(UserModel userModel)
         {
             List<UserWorkTime> userWorkTimes = new List<UserWorkTime>();
